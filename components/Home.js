@@ -23,17 +23,17 @@ function Home() {
  
     
   useEffect(() => {
-    fetch('https://mymoviz-backend-gilt-alpha.vercel.app/movies')
+    fetch('http://localhost:3000/movies')
     .then(response=>response.json())
     .then(data=> {
       console.log(data)
       const updatedMovies = data.movies;
       console.log(updatedMovies)
       
-      const newMoviesData = updatedMovies.map((movie, i) => {
+      const newMoviesData = updatedMovies.map((movie) => {
       const truncatedText = truncateText(movie.overview, 250);
         return {
-          title:movie.title, overview:truncatedText, poster:`https://image.tmdb.org/t/p/w500${movie.poster_path}`, voteAaverage:movie.vote_average, voteCount:movie.vote_count,
+          title:movie.title, overview:truncatedText, poster:`https://image.tmdb.org/t/p/w500${movie.poster_path}`, voteAverage:movie.vote_average, voteCount:movie.vote_count,
         }
       })
       setMoviesData(newMoviesData)
@@ -76,7 +76,7 @@ function Home() {
 
   const movies = moviesData.map((data, i) => {
     const isLiked = likedMovies.some(movie => movie === data.title);
-    return <Movie key={i} updateLikedMovies={updateLikedMovies} isLiked={isLiked} title={data.title} overview={data.overview} poster={data.poster} voteAaverage={data.voteAverage} voteCount={data.voteCount} />;
+    return <Movie key={i} updateLikedMovies={updateLikedMovies} isLiked={isLiked} title={data.title} overview={data.overview} poster={data.poster} voteAverage={data.voteAverage} voteCount={data.voteCount} />;
   });
 
   return (
