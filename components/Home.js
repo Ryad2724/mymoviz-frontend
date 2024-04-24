@@ -23,7 +23,7 @@ function Home() {
  
     
   useEffect(() => {
-    fetch('http://mymoviz-backend-gilt-alpha.vercel.app/movies')
+    fetch('https://mymoviz-backend-gilt-alpha.vercel.app/movies')
     .then(response=>response.json())
     .then(data=> {
       console.log(data)
